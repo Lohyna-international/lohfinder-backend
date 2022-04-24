@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from db import get_database, DatabaseManager
-from core.helpers import parse_json
 import json
 
 
