@@ -4,8 +4,13 @@ from typing import Optional
 
 class UserSchema(BaseDBModel):
     id: Optional[OID]
+    password_hash: str
     username: str
+    full_name: str
     city: str
 
 
-# add your model schemas here. Schema is used for validation.
+class Token(BaseDBModel):
+    id: Optional[OID]
+    access_token: str
+    token_type: str

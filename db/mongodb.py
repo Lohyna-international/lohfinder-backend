@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from core.config import settings
 from db.db_manager_base import DatabaseManager
 from typing import List
-from schemas.users_schema import UserSchema
+from schemas.users_schema import UserSchema, Token
 
 
 class MongoManager(DatabaseManager):

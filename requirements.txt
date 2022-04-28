@@ -1,3 +1,6 @@
 fastapi
 uvicorn
 motor
+python-jose
+passlib
+python-multipart
