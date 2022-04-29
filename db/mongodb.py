@@ -27,3 +27,11 @@ class MongoManager(DatabaseManager):
         async for user in self.db.users.find():
             users_list.append(UserSchema(**user, id=user["_id"]))
         return users_list
+    
+    async def get_user_by_username(self, username) -> UserSchema:
+        res = await self.db.users.find({"username" : username}).to_list(None)
+        user = res[0]
+        return UserSchema(**user, id=user["_id"])
+
+    async def create_user(self, user_info):
+        await self.db.users.insert_one(user_info)

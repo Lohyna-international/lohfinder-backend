@@ -1,16 +1,16 @@
 from schemas.base_schema import BaseDBModel, OID
 from typing import Optional
 
-
-class UserSchema(BaseDBModel):
-    id: Optional[OID]
-    password_hash: str
+class UserBaseSchema(BaseDBModel):
+    password: str
     username: str
-    full_name: str
+    fullName: str
     city: str
 
+class UserSchema(UserBaseSchema):
+    id: Optional[OID]
 
 class Token(BaseDBModel):
     id: Optional[OID]
-    access_token: str
-    token_type: str
+    accessToken: str
+    tokenType: str
