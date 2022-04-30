@@ -11,8 +11,8 @@ router = APIRouter(prefix="/users", tags=["User"])
 
 @router.get("/me")
 async def get_current_user(db: DatabaseManager = Depends(get_database), token = Depends(JWTBearer())):
-    username = decodeJWT(token)
-    current_user = await db.get_user_by_username(username)
+    token_info = decodeJWT(token)
+    current_user = await db.get_user_by_username(token_info["user_id"])
     return current_user
 
 
@@ -27,8 +27,7 @@ async def login_for_access_token(
     db: DatabaseManager = Depends(get_database),
     form_data: OAuth2PasswordRequestForm = Depends(),
 ):
-    users = await db.get_users_list()
-    user = authenticate_user(users, form_data.username, form_data.password)
+    user = await authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

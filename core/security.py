@@ -18,8 +18,8 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 
-def authenticate_user(users, username: str, password: str):
-    user = next(i for i in users if i.username == username)
+async def authenticate_user(db, username: str, password: str):
+    user = await db.get_user_by_username(username)
     if not user:
         return False
     if not verify_password(password, user.password):
