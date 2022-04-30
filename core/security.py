@@ -1,6 +1,10 @@
 from jose import jwt
 from passlib.context import CryptContext
-from fastapi.security import OAuth2PasswordBearer, HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import (
+    OAuth2PasswordBearer,
+    HTTPBearer,
+    HTTPAuthorizationCredentials,
+)
 from fastapi import HTTPException, Request
 from core.config import settings
 from typing import Dict
@@ -13,6 +17,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def get_password_hash(password):
     return pwd_context.hash(password)
+
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)

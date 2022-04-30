@@ -10,7 +10,9 @@ router = APIRouter(prefix="/users", tags=["User"])
 
 
 @router.get("/me")
-async def get_current_user(db: DatabaseManager = Depends(get_database), token = Depends(JWTBearer())):
+async def get_current_user(
+    db: DatabaseManager = Depends(get_database), token=Depends(JWTBearer())
+):
     token_info = decodeJWT(token)
     current_user = await db.get_user_by_username(token_info["user_id"])
     return current_user
@@ -38,8 +40,11 @@ async def login_for_access_token(
     access_token = signJWT(user.username)
     return {"access_token": access_token, "token_type": "bearer"}
 
+
 @router.post("/signup")
-async def signup(db: DatabaseManager = Depends(get_database), user_info: UserBaseSchema = Body(...)):
+async def signup(
+    db: DatabaseManager = Depends(get_database), user_info: UserBaseSchema = Body(...)
+):
     user_info.password = get_password_hash(user_info.password)
     await db.create_user(user_info.dict())
     access_token = signJWT(user_info.username)
