@@ -72,3 +72,4 @@ class MongoManager(DatabaseManager):
         except Exception as e:
             print("Failed to delete event : " + str(e))
             return False
+            

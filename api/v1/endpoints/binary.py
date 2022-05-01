@@ -40,3 +40,4 @@ async def download_file(fileName : str, db: DatabaseManager = Depends(get_databa
         raise HTTPException(status_code=400, detail="File was damaged")
 
     return FileResponse(file_to_read, media_type=f"image/{ext[1:]}")
+    
