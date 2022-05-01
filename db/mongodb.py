@@ -32,16 +32,16 @@ class MongoManager(DatabaseManager):
 
     async def put_binary(self, key, name) -> bool:
         try:
-            await self.db.bin.insert_one(BinSchema(key, name).dict())
+            await self.db.bin.insert_one(BinSchema(key = key, name = name).dict())
             return True
-        except:
-            print("Failed to add bin data to database")
+        except Exception as e:
+            print("Failed to add bin data to database : " + str(e))
             return False
 
     async def get_binary(self, name) -> str:
         try:
             result = await self.db.bin.find_one({"name" : name})
-            return result if result is not None else ""
+            return result['key'] if result else ""
         except:
             print("Failed to find file in database")
             return ""
