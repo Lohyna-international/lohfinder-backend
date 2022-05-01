@@ -32,7 +32,7 @@ class MongoManager(DatabaseManager):
 
     async def put_binary(self, key, name) -> bool:
         try:
-            await self.db.bin.insert_one(BinSchema(key = key, name = name).dict())
+            await self.db.bin.insert_one(BinSchema(key=key, name=name).dict())
             return True
         except Exception as e:
             print("Failed to add bin data to database : " + str(e))
@@ -40,12 +40,12 @@ class MongoManager(DatabaseManager):
 
     async def get_binary(self, name) -> str:
         try:
-            result = await self.db.bin.find_one({"name" : name})
-            return result['key'] if result else ""
+            result = await self.db.bin.find_one({"name": name})
+            return result["key"] if result else ""
         except:
             print("Failed to find file in database")
             return ""
-    
+
     async def get_events(self) -> List[EventsSchema]:
         try:
             events = []
@@ -67,9 +67,8 @@ class MongoManager(DatabaseManager):
 
     async def delete_event(self, id):
         try:
-            await self.db.events.delete_one({"_id" : id})
+            await self.db.events.delete_one({"_id": id})
             return True
         except Exception as e:
             print("Failed to delete event : " + str(e))
             return False
-            

@@ -16,13 +16,17 @@ async def get_all_events(db: DatabaseManager = Depends(get_database)):
     else:
         raise HTTPException(500, "Failed to get events!")
 
+
 @router.post("/create")
-async def create_event(event_info : EventsSchema, db: DatabaseManager = Depends(get_database)):
+async def create_event(
+    event_info: EventsSchema, db: DatabaseManager = Depends(get_database)
+):
     result = await db.create_event(event_info.dict())
     if result:
-        return {"id" : result}
+        return {"id": result}
     else:
         raise HTTPException(500, "Failed to create event!")
+
 
 @router.post("/delete/{id}")
 async def delete_event(id, db: DatabaseManager = Depends(get_database)):

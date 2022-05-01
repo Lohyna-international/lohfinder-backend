@@ -1,6 +1,7 @@
 from schemas.base_schema import BaseDBModel, OID
 from typing import Optional
 
+
 class EventsSchema(BaseDBModel):
     id: Optional[OID]
     created_by: str
@@ -9,4 +10,3 @@ class EventsSchema(BaseDBModel):
     main_photo: str
     photos: str
     description: str
-
