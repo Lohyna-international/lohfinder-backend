@@ -1,0 +1,8 @@
+from settings import *
+
+def get_users():
+    users = re.get(f"{BACKEND_ADDRESS}/{API_PREFIX}/users").text
+    assert len(users) != 0, "Failed user test"
+
+
+get_users()
