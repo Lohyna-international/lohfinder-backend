@@ -3,5 +3,6 @@ uvicorn
 motor
 python-jose
 passlib
-python-multipart
 pymongo[srv]
+python-multipart
+pre-commit

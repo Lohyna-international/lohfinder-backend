@@ -1,5 +1,7 @@
 from fastapi import APIRouter
-from api.v1.endpoints import user
+from api.v1.endpoints import user, binary, events
+
 
 api_v1_router = APIRouter()
-api_v1_router.include_router(user.router)
+for router in [user, binary, events]:
+    api_v1_router.include_router(router.router)
