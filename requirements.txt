@@ -3,3 +3,4 @@ uvicorn
 motor
 pymongo[srv]
 python-multipart
+pre-commit
