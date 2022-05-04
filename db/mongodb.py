@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from core.config import settings
 from db.db_manager_base import DatabaseManager
 from typing import List
-from schemas.users_schema import UserSchema
+from schemas.users_schema import UserSchema, Token
 from schemas.bin_schema import BinSchema
 from schemas.events_schema import EventsSchema
 
@@ -29,6 +29,14 @@ class MongoManager(DatabaseManager):
         async for user in self.db.users.find():
             users_list.append(UserSchema(**user, id=user["_id"]))
         return users_list
+
+    async def get_user_by_username(self, username) -> UserSchema:
+        user = await self.db.users.find_one({"username": username})
+        print(username)
+        return UserSchema(**user, id=user["_id"]) if user else None
+
+    async def create_user(self, user_info):
+        await self.db.users.insert_one(user_info)
 
     async def put_binary(self, key, name) -> bool:
         try:

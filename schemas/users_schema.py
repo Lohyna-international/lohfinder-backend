@@ -2,10 +2,18 @@ from schemas.base_schema import BaseDBModel, OID
 from typing import Optional
 
 
-class UserSchema(BaseDBModel):
-    id: Optional[OID]
+class UserBaseSchema(BaseDBModel):
+    password: str
     username: str
+    fullName: str
     city: str
 
 
-# add your model schemas here. Schema is used for validation.
+class UserSchema(UserBaseSchema):
+    id: Optional[OID]
+
+
+class Token(BaseDBModel):
+    id: Optional[OID]
+    accessToken: str
+    tokenType: str

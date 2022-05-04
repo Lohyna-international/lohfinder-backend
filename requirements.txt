@@ -1,6 +1,8 @@
 fastapi
 uvicorn
 motor
+python-jose
+passlib
 pymongo[srv]
 python-multipart
 pre-commit
