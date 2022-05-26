@@ -7,7 +7,7 @@ import requests as re
 
 class Settings:
     API_V1_STR: str = "api/v1"
-    BACKEND_CORS_ORIGINS = ["http://localhost:8000", "https://remzjz.deta.dev"]
+    BACKEND_CORS_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
     DEBUG = False
 
 
