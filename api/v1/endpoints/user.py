@@ -4,7 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from core.security import authenticate_user, decodeJWT, get_password_hash
 
 from core.security import signJWT, JWTBearer
-from schemas.users_schema import UserSchema, UserBaseSchema
+from schemas.users_schema import UserBaseSchema
 
 router = APIRouter(prefix="/users", tags=["User"])
 
