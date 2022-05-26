@@ -7,3 +7,4 @@ pymongo[srv]
 python-multipart
 pre-commit
 pytest
+requests
