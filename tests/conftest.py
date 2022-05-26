@@ -1,3 +1,4 @@
+from distutils.debug import DEBUG
 from lib2to3.pgen2 import token
 import pytest
 import os
@@ -8,12 +9,17 @@ import requests as re
 
 class Settings:
     API_V1_STR: str = "api/v1"
-    BACKEND_CORS_ORIGINS = ["http://localhost:8000"]
+    BACKEND_CORS_ORIGINS = (["http://localhost:8000", "https://remzjz.deta.dev/docs"],)
+    DEBUG = False
 
 
 @pytest.fixture
 def base_url():
-    BACKEND_ADDRESS = Settings.BACKEND_CORS_ORIGINS[0]
+    BACKEND_ADDRESS = (
+        Settings.BACKEND_CORS_ORIGINS[0]
+        if Settings.DEBUG
+        else Settings.BACKEND_CORS_ORIGINS[1]
+    )
     API_PREFIX = Settings.API_V1_STR
     return os.path.join(BACKEND_ADDRESS, API_PREFIX)
 
